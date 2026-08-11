@@ -1239,7 +1239,9 @@
                 voices = data.voices || [];
                 
                 if (voices.length > 0 && !selectedVoice) {
-                    selectVoice(voices[0].voice_id);
+                    const defaultId = data.default_voice || voices[0].voice_id;
+                    const defaultVoice = voices.find(v => v.voice_id === defaultId);
+                    selectVoice(defaultVoice ? defaultVoice.voice_id : voices[0].voice_id);
                 }
                 
                 renderVoiceGrid();

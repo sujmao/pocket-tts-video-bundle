@@ -23,6 +23,7 @@ from contextlib import asynccontextmanager
 import tempfile
 import io
 import subprocess
+import webbrowser
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Request
 from fastapi.responses import StreamingResponse, JSONResponse, HTMLResponse, FileResponse
@@ -444,6 +445,9 @@ async def lifespan(app: FastAPI):
     global available_voices
     available_voices = {v["voice_id"]: v for v in scan_voices()}
     print(f"[INFO] Found {len(available_voices)} voices (loaded on-demand)")
+    # Auto-open browser
+    port = config.get("server", {}).get("port", 8000)
+    webbrowser.open(f"http://localhost:{port}")
     yield
     print("[INFO] Server shutting down...")
 
@@ -569,7 +573,8 @@ async def list_voices():
         )
     # Enrich with language, gender, style, accent metadata
     voices = enrich_voice_list(voices)
-    return {"voices": voices}
+    default_voice = config.get("voice", {}).get("default_voice", "peter-yearsley")
+    return {"voices": voices, "default_voice": default_voice}
 
 
 # ============== LLM Integration ==============
@@ -1187,7 +1192,7 @@ async def upload_voice(
 class VideoGenerateRequest(BaseModel):
     text: str = Field(..., min_length=1, max_length=10000, description="Text to speak in the video")
     title: str = Field(..., min_length=1, max_length=200, description="Title displayed on the video")
-    voice: str = Field(default="alba", description="Voice ID to use for TTS")
+    voice: str = Field(default="peter-yearsley", description="Voice ID to use for TTS")
 
 
 @app.post("/api/video/generate")
