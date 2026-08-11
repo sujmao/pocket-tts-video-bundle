@@ -20,11 +20,12 @@ __pycache__/
 Thumbs.db
 Desktop.ini
 
-# IDE
+# IDE / Plans / Temp
 .vscode/
 .idea/
-
-# Temp / plans
 plans/
 temp/
 *.tmp
+
+# Bundled tools (included in release ZIP, not in git)
+tools/

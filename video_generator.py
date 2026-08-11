@@ -13,6 +13,12 @@ from pathlib import Path
 
 import scipy.io.wavfile
 
+# ── Resolve bundled ffmpeg (fallback to system PATH) ────────────────────
+
+_WORKSPACE = Path(__file__).resolve().parent
+_BUNDLED_FFMPEG = _WORKSPACE / "tools" / "ffmpeg" / "bin" / "ffmpeg.exe"
+_FFMPEG = str(_BUNDLED_FFMPEG) if _BUNDLED_FFMPEG.exists() else "ffmpeg"
+
 # ── ffmpeg constants ────────────────────────────────────────────────────
 
 VIDEO_WIDTH = 640
@@ -118,7 +124,7 @@ def generate_video(
         filter_complex = _build_filter_complex(title)
 
         cmd = [
-            "ffmpeg",
+            _FFMPEG,
             "-i", str(wav_path),
             "-filter_complex", filter_complex,
             "-map", "[out]",

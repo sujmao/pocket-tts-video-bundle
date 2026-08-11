@@ -26,15 +26,51 @@
 
 ---
 
-## Quick Start
+## Installation
 
-1. **Extract** `pocket-tts-portable.zip` to any folder
-2. **Double-click** `start.bat`
-3. Wait for the console to show:
+The release is split into **4 layered ZIPs** to keep downloads manageable.  
+Download ALL parts, then extract them to the **same folder** in order:
+
+| # | File | Contents | Size |
+|---|------|----------|------|
+| 1 | `pocket-tts-core-v1.0.zip` | App, Python runtime, ffmpeg | ~60MB |
+| 2 | `pocket-tts-deps-v1.0.zip` | Python libraries (site-packages) | ~960MB |
+| 3 | `pocket-tts-models-v1.0.zip` | TTS model + voice embeddings | ~370MB |
+| 4 | `pocket-tts-voices-v1.0.zip` | Custom celebrity voices | ~5MB |
+
+### Assembly Steps
+
+```
+1. Create a folder:  pocket-tts-portable/
+2. Extract ALL ZIPs into that folder (overwrite when prompted)
+3. Double-click start.bat
+```
+
+After extraction your folder should look like:
+
+```
+pocket-tts-portable/
+├── start.bat
+├── python/            ← Part 1
+├── tools/ffmpeg/      ← Part 1
+├── site-packages/     ← Part 2
+├── models/            ← Part 3
+├── voices-celebrities/← Part 4 (optional)
+├── pocket_tts_api.py
+├── video_generator.py
+├── voice_metadata.py
+└── templates/
+    └── index.html
+```
+
+### Quick Start After Assembly
+
+1. **Double-click** `start.bat`
+2. Wait for the console to show:
    ```
    Uvicorn running on http://0.0.0.0:8000
    ```
-4. **Open your browser** → `http://localhost:8000`
+3. **Open your browser** → `http://localhost:8000`
 
 ---
 
