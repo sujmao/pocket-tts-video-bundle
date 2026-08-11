@@ -30,3 +30,4 @@ temp/
 # Bundled tools (included in release ZIP, not in git)
 tools/
 release/
+dist/
