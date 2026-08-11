@@ -455,7 +455,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Pocket TTS API",
     description="OpenAI-compatible Text-to-Speech API with voice cloning and LLM integration",
-    version="2.4.0",
+    version="2.3.0",
     lifespan=lifespan,
 )
 
@@ -1278,7 +1278,7 @@ if __name__ == "__main__":
 
     print(f"""
 ╔══════════════════════════════════════════════════════════════╗
-║                    Pocket TTS Server v2.4                    ║
+║                    Pocket TTS Server v2.3                    ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Web Interface: http://localhost:{port:<4}                     ║
 ║  API Docs:     http://localhost:{port:<4}/docs                  ║
