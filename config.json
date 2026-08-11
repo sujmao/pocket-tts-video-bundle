@@ -1,0 +1,44 @@
+{
+  "audio": {
+    "output_format": "wav",
+    "sample_rate": 24000,
+    "bit_depth": 16,
+    "channels": 1
+  },
+  "voice": {
+    "default_voice": "alba",
+    "speed": 1.0,
+    "pitch": 1.0,
+    "volume": 1.0,
+    "emotion": "neutral"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "debug": false
+  },
+  "processing": {
+    "max_text_length": 5000,
+    "batch_size": 1,
+    "chunk_size": 1000,
+    "overlap": 100
+  },
+  "paths": {
+    "voices_dir": "voices-celebrities",
+    "output_dir": "output",
+    "temp_dir": "temp"
+  },
+  "features": {
+    "enable_preprocessing": true,
+    "enable_postprocessing": true,
+    "cache_generated_audio": true,
+    "auto_play": false
+  },
+  "llm": {
+    "enabled": false,
+    "api_url": "http://127.0.0.1:8085/v1/chat/completions",
+    "api_key": "",
+    "model": "gpt-oss-20b-Q8_0.gguf",
+    "system_prompt": "You are a helpful AI assistant. Keep your responses concise and natural."
+  }
+}

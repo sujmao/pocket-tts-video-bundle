@@ -1,0 +1,30 @@
+# Large binary assets (distributed separately in release zip)
+models/
+python/
+site-packages/
+voices-celebrities/
+voices-celebrities-archive/
+
+# Generated output
+output/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Temp / plans
+plans/
+temp/
+*.tmp
