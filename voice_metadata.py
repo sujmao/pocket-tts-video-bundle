@@ -6,7 +6,7 @@ Source: Kyutai official page (kyutai.org/blog/2026-01-13-pocket-tts) + user test
 
 # ── Language codes & display ──────────────────────────────────────────
 LANG = {
-    "en": {"flag": "🇬🇧", "label": "English"},
+    "en": {"flag": "", "label": "English"},
     "de": {"flag": "🇩🇪", "label": "German"},
     "it": {"flag": "🇮🇹", "label": "Italian"},
     "fr": {"flag": "🇫🇷", "label": "French"},
@@ -181,6 +181,8 @@ def enrich_voice(voice: dict) -> dict:
         tags.append(style_code)
     if voice["non_rhotic"]:
         tags.append("non-rhotic")
+    elif lang_code == "en":
+        tags.append("rhotic")
     tags.append(gender_code)
     voice["tags"] = tags
 

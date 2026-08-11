@@ -831,6 +831,7 @@
         .voice-tag.conv { background: rgba(139,92,246,0.2); color: #c4b5fd; }
         .voice-tag.read { background: rgba(107,114,128,0.2); color: #d1d5db; }
         .voice-tag.non-rhotic { background: rgba(236,72,153,0.2); color: #f9a8d4; }
+        .voice-tag.rhotic { background: rgba(59,130,246,0.2); color: #93c5fd; }
 
         /* ── Voice Library filter pills ───────────────────── */
         .voice-filters {
@@ -1165,11 +1166,12 @@
                 <!-- Voice filter pills -->
                 <div class="voice-filters" id="voice-filters">
                     <button class="filter-pill active" data-filter="all" onclick="setVoiceFilter('all')">All</button>
-                    <button class="filter-pill" data-filter="en" onclick="setVoiceFilter('en')">🇬🇧 English</button>
+                    <button class="filter-pill" data-filter="en" onclick="setVoiceFilter('en')">English</button>
                     <button class="filter-pill" data-filter="non-en" onclick="setVoiceFilter('non-en')">🌍 Non-English</button>
+                    <button class="filter-pill" data-filter="non-rhotic" onclick="setVoiceFilter('non-rhotic')">🔇 Non-Rhotic</button>
+                    <button class="filter-pill" data-filter="rhotic" onclick="setVoiceFilter('rhotic')">🔊 Rhotic</button>
                     <button class="filter-pill" data-filter="conversation" onclick="setVoiceFilter('conversation')">💬 Conversation</button>
                     <button class="filter-pill" data-filter="reading" onclick="setVoiceFilter('reading')">📖 Reading</button>
-                    <button class="filter-pill" data-filter="non-rhotic" onclick="setVoiceFilter('non-rhotic')">🇬🇧 Non-Rhotic</button>
                 </div>
                 <div id="voice-grid" class="voice-grid">
                     <!-- Voices loaded dynamically -->
@@ -1265,7 +1267,9 @@
                 tags += `<span class="voice-tag ${styleCls}">${voice.style_emoji} ${voice.style_label}</span>`;
             }
             if (voice.non_rhotic) {
-                tags += `<span class="voice-tag non-rhotic">🇬🇧 Non-Rhotic</span>`;
+                tags += `<span class="voice-tag non-rhotic">🔇 Non-Rhotic</span>`;
+            } else if (voice.language_code === 'en') {
+                tags += `<span class="voice-tag rhotic">🔊 Rhotic</span>`;
             }
             return tags;
         }
@@ -1277,6 +1281,7 @@
             if (filter === 'conversation') return voice.style === 'conversation';
             if (filter === 'reading') return voice.style === 'reading';
             if (filter === 'non-rhotic') return voice.non_rhotic === true;
+            if (filter === 'rhotic') return voice.language_code === 'en' && voice.non_rhotic === false;
             return true;
         }
 
