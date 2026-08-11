@@ -1272,6 +1272,10 @@ if __name__ == "__main__":
     host = config["server"]["host"]
     port = config["server"]["port"]
 
+    # Pre-scan voices so banner shows correct count (lifespan runs later, inside uvicorn)
+    available_voices = {v["voice_id"]: v for v in scan_voices()}
+    print(f"[INFO] Found {len(available_voices)} voices (loaded on-demand)")
+
     print(f"""
 ╔══════════════════════════════════════════════════════════════╗
 ║                    Pocket TTS Server v2.3                    ║
